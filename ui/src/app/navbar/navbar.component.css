@@ -1,9 +1,13 @@
 .text {
-  color : red;
+  color : white;
 }
 
 .material-icons{
     height: 70px;
     color : red;
     padding-left: 25px
+}
+
+.brand-logo{
+  padding-left: 60px;
 }
