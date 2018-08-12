@@ -1,11 +1,16 @@
 .text {
   color : white;
+  font-family: Courier New, Courier, monospace
 }
 
 .material-icons{
     height: 70px;
     color : red;
     padding-left: 25px
+}
+
+.navButtons{
+  padding-right: 100px;
 }
 
 .brand-logo{
