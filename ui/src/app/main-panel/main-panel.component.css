@@ -1,4 +1,5 @@
 .mainPanelDetails{
     color : red;
-    height : 700px;
+    align-content: flex-end;
+    padding-top: 50px
 }

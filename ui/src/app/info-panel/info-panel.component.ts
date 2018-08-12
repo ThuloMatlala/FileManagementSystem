@@ -9,7 +9,10 @@ export class InfoPanelComponent implements OnInit {
 
   constructor() { }
 
+  cardTitle: string
+
   ngOnInit() {
+    this.cardTitle = "Delicious! Everytime!"
   }
 
 }
