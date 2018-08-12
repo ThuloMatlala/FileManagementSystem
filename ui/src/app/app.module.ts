@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MainPanelComponent } from './main-panel/main-panel.component';
 import { BottomPanelComponent } from './bottom-panel/bottom-panel.component';
 import { PicturePanelComponent } from './picture-panel/picture-panel.component';
+import { InfoPanelComponent } from './info-panel/info-panel.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PicturePanelComponent } from './picture-panel/picture-panel.component';
     NavbarComponent,
     MainPanelComponent,
     BottomPanelComponent,
-    PicturePanelComponent
+    PicturePanelComponent,
+    InfoPanelComponent
   ],
   imports: [
     BrowserModule
