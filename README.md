@@ -1,2 +1,2 @@
-# deufoodsgateway
-Purchasing and visibility portal for deufoods
+# tPrice
+Pricing visibility portal for deufoods
