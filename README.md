@@ -1,2 +1,2 @@
 # tPrice
-Pricing visibility portal for deufoods
+Pricing and visibility portal for deufoods
