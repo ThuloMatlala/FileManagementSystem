@@ -4,7 +4,12 @@
 }
 
 .navButtons{
-  padding-right: 100px;
+  padding-left: 100px;
+  padding-top: 100px;
+}
+
+.nav-wrapper{
+  width: 30%;
 }
 
 .brand-logo{

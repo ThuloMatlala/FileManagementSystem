@@ -1,4 +1,3 @@
-.slider{
-    max-height: 600px;
-    max-width: 600px;
+.card{
+    block-size: 100px;  
 }
