@@ -1,26 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MainPanelComponent } from './main-panel/main-panel.component';
-import { BottomPanelComponent } from './bottom-panel/bottom-panel.component';
-import { PicturePanelComponent } from './picture-panel/picture-panel.component';
-import { InfoPanelComponent } from './info-panel/info-panel.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { FileManagementComponent } from './file-management/file-management.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavComponent,
     HomeComponent,
-    NavbarComponent,
-    MainPanelComponent,
-    BottomPanelComponent,
-    PicturePanelComponent,
-    InfoPanelComponent
+    LoginComponent,
+    RegisterComponent,
+    FileManagementComponent,
+    ContactComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
