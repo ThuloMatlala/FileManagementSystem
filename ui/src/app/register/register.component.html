@@ -1,3 +1,87 @@
-<p>
-  register works!
-</p>
+  <div class="main">
+    <h3>REGISTER</h3>
+    <form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
+
+      <h5 *ngIf="success">All required information is valid</h5>
+
+      <label>
+        First Name :
+        <input type="text" formControlName="firstName">
+        <div *ngIf="submitted && detailForm.controls.firstName.errors" class="error">
+          <div *ngIf="detailForm.controls.firstName.errors.required">Your first name is required</div>
+        </div>
+      </label>
+
+
+      <label>
+        Last Name :
+        <input type="text" formControlName="lastName">
+        <div *ngIf="submitted && detailForm.controls.lastName.errors" class="error">
+          <div *ngIf="detailForm.controls.lastName.errors.required">Your last name is required</div>
+        </div>
+      </label>
+
+
+      <label>
+        Phone Number:
+        <input type="tel" formControlName="phone">
+        <div *ngIf="submitted && detailForm.controls.phone.errors" class="error">
+          <div *ngIf="detailForm.controls.phone.errors.required">Your phone number is required</div>
+        </div>
+      </label>
+
+
+      <label>
+        Position:
+        <input type="tel" formControlName="position">
+        <div *ngIf="submitted && detailForm.controls.position.errors" class="error">
+          <div *ngIf="detailForm.controls.position.errors.required">Your position is required</div>
+        </div>
+      </label>
+
+
+      <label>
+        Company Name:
+        <input type="tel" formControlName="companyName">
+        <div *ngIf="submitted && detailForm.controls.companyName.errors" class="error">
+          <div *ngIf="detailForm.controls.companyName.errors.required">Your company name is required</div>
+        </div>
+      </label>
+
+      <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option selected>Choose Grade...</option>
+            <option value="1">Grade 2 Less than or equal to R650,000.00</option>
+            <option value="2">Grade 3 Less than or equal to R2,000,000.00</option>
+            <option value="3">Grade 4 Less than or equal to R4,000,000.00</option>
+          </select>
+        </div>
+
+        <div class="col-auto my-1">
+          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option selected>Choose Work Type...</option>
+            <option value="1">CE - Civil Engineering </option>
+            <option value="2">GB - General Building Works</option>
+            <option value="3">Specialist Work</option>
+          </select>
+        </div>
+      </div>
+
+      <label>
+        Trading Name:
+        <input type="tel" formControlName="tradingName">
+        <div *ngIf="submitted && detailForm.controls.tradingName.errors" class="error">
+          <div *ngIf="detailForm.controls.tradingName.errors.required">Your trading name is required</div>
+        </div>
+      </label>
+
+      <input type="submit" value="Register" class="cta">
+    </form>
+    <div *ngIf="submitted" class="results">
+      <strong>First Name</strong>
+      <span> {{ detailForm.controls.firstName.value }}</span>
+    </div>
+  </div>
