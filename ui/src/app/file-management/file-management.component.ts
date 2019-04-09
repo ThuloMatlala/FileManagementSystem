@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-file-management',
@@ -20,7 +19,7 @@ export class FileManagementComponent implements OnInit {
   ngOnInit() {
     this.data.getFiles().subscribe(data => {
       this.files = data;
-      console.log(this.files);
+      // console.log(this.files);
     })
   }
 
