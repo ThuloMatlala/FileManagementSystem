@@ -1,4 +1,4 @@
-package com.trpice.userManagement;
+package com.tprice.userManagement.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
