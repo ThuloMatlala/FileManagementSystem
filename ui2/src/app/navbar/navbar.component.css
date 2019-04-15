@@ -1,0 +1,17 @@
+.text {
+  color : white;
+  font-family: Courier New, Courier, monospace
+}
+
+.navButtons{
+  padding-left: 100px;
+  padding-top: 100px;
+}
+
+.nav-wrapper{
+  width: 30%;
+}
+
+.brand-logo{
+  padding-left: 60px;
+}
