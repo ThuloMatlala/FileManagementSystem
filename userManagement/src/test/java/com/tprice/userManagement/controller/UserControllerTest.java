@@ -43,8 +43,8 @@ public class UserControllerTest {
         mockMvc.perform(post("/user")
                 .contentType(MediaType.APPLICATION_JSON).
                         content(testUser)).andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName", Matchers.is("Thulo")))
-                .andExpect(jsonPath("$.lastName", Matchers.is("Still Thulo")))
-                .andExpect(jsonPath("$.*", Matchers.hasSize(2)));
+                .andExpect(jsonPath("$.firstName", Matchers.is("Test First Name")))
+                .andExpect(jsonPath("$.lastName", Matchers.is("Test Last Name")))
+                .andExpect(jsonPath("$.*", Matchers.hasSize(8)));
     }
 }
