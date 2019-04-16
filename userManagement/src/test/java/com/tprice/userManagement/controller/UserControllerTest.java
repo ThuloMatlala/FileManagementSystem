@@ -1,19 +1,21 @@
 package com.tprice.userManagement.controller;
 
-import com.tprice.userManagement.model.UserApi;
+import com.mysql.cj.xdevapi.JsonArray;
 import org.hamcrest.Matchers;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.junit.Assert.*;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,9 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     private MockMvc mockMvc;
-
-    @Mock
-    private UserApi userApi;
 
     @InjectMocks
     private UserController userController;
@@ -36,15 +35,29 @@ public class UserControllerTest {
 
     @Test
     public void addUser() throws Exception {
-        String testUser = "{\n" +
-                "  \"firstName\": \"Test First Name\",\n" +
-                "  \"lastName\": \"Test Last Name\"\n" +
-                "}";
+
+        JSONObject userDetails = new JSONObject();
+        userDetails.put("id", 1);
+        userDetails.put("firstName", "Test First Name");
+        userDetails.put("lastName", "Test Last Name");
+        userDetails.put("phone", "+00(111)-222-3333");
+        userDetails.put("position", "Test Position");
+        userDetails.put("companyName", "Test Company");
+        userDetails.put("tradingName", "Test Trading Name");
+        userDetails.put("cdibGrade", "Test CDIB GRADE");
+
+
         mockMvc.perform(post("/user")
                 .contentType(MediaType.APPLICATION_JSON).
-                        content(testUser)).andExpect(status().isOk())
+                        content(userDetails.toString())).andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", Matchers.is(1)))
                 .andExpect(jsonPath("$.firstName", Matchers.is("Test First Name")))
                 .andExpect(jsonPath("$.lastName", Matchers.is("Test Last Name")))
-                .andExpect(jsonPath("$.*", Matchers.hasSize(8)));
+                .andExpect(jsonPath("$.phone", Matchers.is("+00(111)-222-3333")))
+                .andExpect(jsonPath("$.position", Matchers.is("Test Position")))
+                .andExpect(jsonPath("$.companyName", Matchers.is("Test Company")))
+                .andExpect(jsonPath("$.tradingName", Matchers.is("Test Trading Name")))
+                .andExpect(jsonPath("$.cdibGrade", Matchers.is("Test CDIB GRADE")))
+                .andExpect(jsonPath("$.*", Matchers.hasSize(9)));
     }
 }

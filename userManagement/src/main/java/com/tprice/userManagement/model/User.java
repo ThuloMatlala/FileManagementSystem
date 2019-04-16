@@ -1,18 +1,16 @@
 package com.tprice.userManagement.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 public class User {
 
     public User(){};
 
+    private Long id;
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
     private String position;
-    private String compayName;
+    private String companyName;
     private String tradingName;
     private String cdibGrade;
 
@@ -57,12 +55,12 @@ public class User {
         this.position = position;
     }
 
-    public String getCompayName() {
-        return compayName;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setCompayName(String compayName) {
-        this.compayName = compayName;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getTradingName() {
@@ -79,5 +77,13 @@ public class User {
 
     public void setCdibGrade(String cdibGrade) {
         this.cdibGrade = cdibGrade;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
