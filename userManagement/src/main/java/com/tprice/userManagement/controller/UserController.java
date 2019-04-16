@@ -1,11 +1,11 @@
 package com.tprice.userManagement.controller;
 
 import com.tprice.userManagement.model.User;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -17,5 +17,9 @@ public class UserController {
     public User AddUser(@RequestBody User user){
         return user;
     }
+
+//    @GetMapping(value = "/users")
+//    public List<User> GetUsers(){
+//    }
 
 }
