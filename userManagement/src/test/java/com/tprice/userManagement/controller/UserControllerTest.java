@@ -1,6 +1,7 @@
 package com.tprice.userManagement.controller;
 
 import com.mysql.cj.xdevapi.JsonArray;
+import com.tprice.userManagement.TestHelper;
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -28,6 +29,8 @@ public class UserControllerTest {
     @InjectMocks
     private UserController userController;
 
+    private TestHelper testHelper;
+
     @Before
     public void setUp(){
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
@@ -35,17 +38,8 @@ public class UserControllerTest {
 
     @Test
     public void addUser() throws Exception {
-
-        JSONObject userDetails = new JSONObject();
-        userDetails.put("id", 1);
-        userDetails.put("firstName", "Test First Name");
-        userDetails.put("lastName", "Test Last Name");
-        userDetails.put("phone", "+00(111)-222-3333");
-        userDetails.put("position", "Test Position");
-        userDetails.put("companyName", "Test Company");
-        userDetails.put("tradingName", "Test Trading Name");
-        userDetails.put("cdibGrade", "Test CDIB GRADE");
-
+        testHelper = new TestHelper();
+        JSONObject userDetails = testHelper.AddSingleUser();
 
         mockMvc.perform(post("/user")
                 .contentType(MediaType.APPLICATION_JSON).
