@@ -27,8 +27,17 @@ public class UserController {
 
     @GetMapping(value = "/users")
     public List<User> GetUsers(){
-        List<User> usersList = new ArrayList<>();
-        return usersList;
+        return new ArrayList<>();
+    }
+
+    @GetMapping(value = "/users/id/{id}")
+    public User findById(@PathVariable long id){
+        return new User();
+    }
+
+    @GetMapping(value = "/users/lastName/{lastName}")
+    public List<User> findByLastName(@PathVariable String lastName){
+        return  new ArrayList<>();
     }
 
 }

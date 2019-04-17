@@ -30,6 +30,7 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     private User user;
+
     @InjectMocks
     private UserController userController;
 
@@ -63,5 +64,15 @@ public class UserControllerTest {
     @Test
     public void getUsers() throws Exception {
         mockMvc.perform(get("/api/users")).andExpect(status().isOk());
+    }
+
+    @Test
+    public void findById() throws Exception {
+        mockMvc.perform(get("/api/users/id/{id}",1L).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+    }
+
+    @Test
+    public void findByLastName() throws Exception {
+        mockMvc.perform(get("/api/users/lastName/{lastName}", "THULO").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
 }
