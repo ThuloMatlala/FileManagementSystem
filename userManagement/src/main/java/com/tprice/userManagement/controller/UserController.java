@@ -44,4 +44,8 @@ public class UserController {
     public User editUser(@PathVariable Long id, @RequestBody User user){
         return new User();
     }
+
+    @DeleteMapping(value ="/users/id/{id}")
+    public void deleteUser(@PathVariable Long id){
+    }
 }

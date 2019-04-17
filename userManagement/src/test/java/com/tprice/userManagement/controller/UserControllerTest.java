@@ -84,4 +84,12 @@ public class UserControllerTest {
                 contentType(MediaType.APPLICATION_JSON).content(userDetails.toString()))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void deleteUser() throws Exception {
+        mockMvc.perform(delete("/api/users/id/{id}", 1L) .contentType(MediaType.APPLICATION_JSON)
+        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+    }
 }
