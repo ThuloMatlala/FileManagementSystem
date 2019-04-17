@@ -2,6 +2,7 @@ package com.tprice.userManagement.controller;
 
 import com.mysql.cj.xdevapi.JsonArray;
 import com.tprice.userManagement.TestHelper;
+import com.tprice.userManagement.model.User;
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -17,6 +18,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,6 +29,7 @@ public class UserControllerTest {
 
     private MockMvc mockMvc;
 
+    private User user;
     @InjectMocks
     private UserController userController;
 
@@ -33,6 +37,7 @@ public class UserControllerTest {
 
     @Before
     public void setUp(){
+        user = mock(User.class);
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 
@@ -41,7 +46,7 @@ public class UserControllerTest {
         testHelper = new TestHelper();
         JSONObject userDetails = testHelper.AddSingleUser();
 
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/api/users/create")
                 .contentType(MediaType.APPLICATION_JSON).
                         content(userDetails.toString())).andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", Matchers.is(1)))
@@ -53,5 +58,10 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.tradingName", Matchers.is("Test Trading Name")))
                 .andExpect(jsonPath("$.cdibGrade", Matchers.is("Test CDIB GRADE")))
                 .andExpect(jsonPath("$.*", Matchers.hasSize(9)));
+    }
+
+    @Test
+    public void getUsers() throws Exception {
+        mockMvc.perform(get("/api/users")).andExpect(status().isOk());
     }
 }
