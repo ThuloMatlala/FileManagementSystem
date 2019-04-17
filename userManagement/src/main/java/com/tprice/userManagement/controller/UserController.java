@@ -40,4 +40,8 @@ public class UserController {
         return  new ArrayList<>();
     }
 
+    @PutMapping(value = "/users/id/{id}")
+    public User editUser(@PathVariable Long id, @RequestBody User user){
+        return new User();
+    }
 }

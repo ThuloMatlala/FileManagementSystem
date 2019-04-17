@@ -19,8 +19,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import static org.mockito.Mockito.mock;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -74,5 +73,15 @@ public class UserControllerTest {
     @Test
     public void findByLastName() throws Exception {
         mockMvc.perform(get("/api/users/lastName/{lastName}", "THULO").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+    }
+
+    @Test
+    public void editUser() throws Exception {
+        testHelper = new TestHelper();
+        JSONObject userDetails = testHelper.AddSingleUser();
+
+        mockMvc.perform(put("/api/users/id/{id}", 1L).
+                contentType(MediaType.APPLICATION_JSON).content(userDetails.toString()))
+                .andExpect(status().isOk());
     }
 }
