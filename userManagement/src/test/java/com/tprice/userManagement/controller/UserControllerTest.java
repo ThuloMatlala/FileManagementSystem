@@ -74,7 +74,7 @@ public class UserControllerTest {
     @Test
     public void editUser() throws Exception {
         testHelper = new TestHelper();
-        JSONObject userDetails = testHelper.AddSingleUser();
+        JSONObject userDetails = testHelper.AddSingleUser();    
 
         mockMvc.perform(put("/api/users/id/{id}", 1L).
                 contentType(MediaType.APPLICATION_JSON).content(userDetails.toString()))

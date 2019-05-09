@@ -28,4 +28,8 @@ public class UserService {
     public User GetUserById(long id){
         return userRepo.getOne(id);
     }
+
+    public List<User> GetUsersBySurname(String lastName) {
+        return userRepo.findByLastName(lastName);
+    }
 }

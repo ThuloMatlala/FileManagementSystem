@@ -33,7 +33,7 @@ public class UserController {
 
     @GetMapping(value = "/users/lastName/{lastName}")
     public List<User> findByLastName(@PathVariable String lastName){
-        return  new ArrayList<>();
+        return userService.GetUsersBySurname(lastName);
     }
 
     @PutMapping(value = "/users/id/{id}")
