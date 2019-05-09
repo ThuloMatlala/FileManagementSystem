@@ -2,9 +2,7 @@ package com.tprice.userManagement.controller;
 
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.model.UserService;
-import com.tprice.userManagement.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +28,7 @@ public class UserController {
 
     @GetMapping(value = "/users/id/{id}")
     public User findById(@PathVariable long id){
-        return new User();
+        return userService.GetUserById(id);
     }
 
     @GetMapping(value = "/users/lastName/{lastName}")
