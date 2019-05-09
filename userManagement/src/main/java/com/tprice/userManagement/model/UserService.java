@@ -45,4 +45,8 @@ public class UserService {
         userToUpdate.setCdibGrade(newUserDetails.getCdibGrade());
         return userRepo.save(newUserDetails);
     }
+
+    public void DeleteUser(Long id) {
+        userRepo.deleteById(id);
+    }
 }

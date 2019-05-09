@@ -43,5 +43,6 @@ public class UserController {
 
     @DeleteMapping(value ="/users/id/{id}")
     public void deleteUser(@PathVariable Long id){
+        userService.DeleteUser(id);
     }
 }
