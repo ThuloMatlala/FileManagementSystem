@@ -20,13 +20,12 @@ public class UserController {
 
     @PostMapping(value = "/users/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public User AddUser(@RequestBody User user){
-        User newUser = userService.AddUser(user);
-        return newUser;
+                return userService.AddUser(user);
     }
 
     @GetMapping(value = "/users")
     public List<User> GetUsers(){
-        return new ArrayList<>();
+        return userService.getAllUsers();
     }
 
     @GetMapping(value = "/users/id/{id}")

@@ -57,7 +57,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getUsers() throws Exception {
+    public void getAllUsers() throws Exception {
         mockMvc.perform(get("/api/users")).andExpect(status().isOk());
     }
 
