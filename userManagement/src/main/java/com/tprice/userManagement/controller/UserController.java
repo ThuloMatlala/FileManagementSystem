@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @PutMapping(value = "/users/id/{id}")
-    public User editUser(@PathVariable Long id, @RequestBody User user){
-        return new User();
+    public User editUser(@PathVariable Long id, @RequestBody User newUserDetails){
+        return userService.EditUser(id, newUserDetails);
     }
 
     @DeleteMapping(value ="/users/id/{id}")

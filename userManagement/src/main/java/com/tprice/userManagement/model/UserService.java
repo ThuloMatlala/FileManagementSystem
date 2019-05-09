@@ -32,4 +32,17 @@ public class UserService {
     public List<User> GetUsersBySurname(String lastName) {
         return userRepo.findByLastName(lastName);
     }
+
+    public User EditUser(Long id, User newUserDetails) {
+        User userToUpdate = userRepo.getOne(id);
+        userToUpdate.setFirstName(newUserDetails.getFirstName());
+        userToUpdate.setLastName(newUserDetails.getLastName());
+        userToUpdate.setPhone(newUserDetails.getPhone());
+        userToUpdate.setEmail(newUserDetails.getEmail());
+        userToUpdate.setPosition(newUserDetails.getPosition());
+        userToUpdate.setCompanyName(newUserDetails.getCompanyName());
+        userToUpdate.setTradingName(newUserDetails.getTradingName());
+        userToUpdate.setCdibGrade(newUserDetails.getCdibGrade());
+        return userRepo.save(newUserDetails);
+    }
 }
