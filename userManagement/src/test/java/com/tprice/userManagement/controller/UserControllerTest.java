@@ -3,6 +3,7 @@ package com.tprice.userManagement.controller;
 import com.mysql.cj.xdevapi.JsonArray;
 import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
+import com.tprice.userManagement.model.UserService;
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -32,6 +33,9 @@ public class UserControllerTest {
 
     @InjectMocks
     private UserController userController;
+
+    @Mock
+    private UserService userService;
 
     private TestHelper testHelper;
 
