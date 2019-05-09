@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    public UserController(){};
+    public UserController(){}
 
     @PostMapping(value = "/users/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public User AddUser(@RequestBody User user){
