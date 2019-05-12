@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { DataService } from '../_services/data.service';
 
 @Component({
   selector: 'app-register',
@@ -20,10 +21,12 @@ export class RegisterComponent implements OnInit {
   tradingName: string = '';
   cidbGrade: string = '';
 
+  user: Object
+
   submitted = false;
   success = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private dataService:DataService) {
 
     this.detailForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -44,6 +47,8 @@ export class RegisterComponent implements OnInit {
      if(this.detailForm.invalid){
        return;
      }
+
+     this.dataService.addUser(this.detailForm.value);
 
      this.success = true;
    }
