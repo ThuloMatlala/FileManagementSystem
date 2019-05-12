@@ -36,13 +36,13 @@ public class UserService {
         User userToUpdate = userRepo.getOne(id);
         userToUpdate.setFirstName(newUserDetails.getFirstName());
         userToUpdate.setLastName(newUserDetails.getLastName());
-        userToUpdate.setPhone(newUserDetails.getPhone());
         userToUpdate.setEmail(newUserDetails.getEmail());
-        userToUpdate.setPosition(newUserDetails.getPosition());
+        userToUpdate.setPhone(newUserDetails.getPhone());
         userToUpdate.setCompanyName(newUserDetails.getCompanyName());
         userToUpdate.setTradingName(newUserDetails.getTradingName());
+        userToUpdate.setPosition(newUserDetails.getPosition());
         userToUpdate.setCdibGrade(newUserDetails.getCdibGrade());
-        return userRepo.save(newUserDetails);
+        return userRepo.save(userToUpdate);
     }
 
     public void DeleteUser(Long id) {
