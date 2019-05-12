@@ -57,7 +57,7 @@ public class UserControllerTest {
 
     @Test
     public void findById() throws Exception {
-        mockMvc.perform(get("/api/users/id/{id}",1L).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+        mockMvc.perform(get("/api/users/{id}",1L).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
 
     @Test
@@ -70,14 +70,14 @@ public class UserControllerTest {
         testHelper = new TestHelper();
         JSONObject userDetails = testHelper.AddSingleUser();
 
-        mockMvc.perform(put("/api/users/id/{id}", 1L).
+        mockMvc.perform(put("/api/users/{id}", 1L).
                 contentType(MediaType.APPLICATION_JSON).content(userDetails.toString()))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void deleteUser() throws Exception {
-        mockMvc.perform(delete("/api/users/id/{id}", 1L) .contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(delete("/api/users/{id}", 1L) .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 

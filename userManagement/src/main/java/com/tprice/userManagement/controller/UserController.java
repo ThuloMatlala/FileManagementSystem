@@ -27,7 +27,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping(value = "/users/id/{id}")
+    @GetMapping(value = "/users/{id}")
     public User findById(@PathVariable long id){
         return userService.GetUserById(id);
     }
@@ -37,12 +37,12 @@ public class UserController {
         return userService.GetUsersBySurname(lastName);
     }
 
-    @PutMapping(value = "/users/id/{id}")
+    @PutMapping(value = "/users/{id}")
     public User editUser(@PathVariable Long id, @RequestBody User newUserDetails){
         return userService.EditUser(id, newUserDetails);
     }
 
-    @DeleteMapping(value ="/users/id/{id}")
+    @DeleteMapping(value ="/users/{id}")
     public void deleteUser(@PathVariable Long id){
         userService.DeleteUser(id);
     }
