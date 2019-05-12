@@ -62,7 +62,7 @@ public class UserControllerTest {
 
     @Test
     public void findByLastName() throws Exception {
-        mockMvc.perform(get("/api/users/lastName/{lastName}", "THULO").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+        mockMvc.perform(get("/api/users/lastName?lastName={lastName}", "THULO").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
 
     @Test

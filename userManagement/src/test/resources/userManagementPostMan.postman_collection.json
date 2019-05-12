@@ -1,0 +1,344 @@
+{
+	"info": {
+		"name": "userManagementPostMan",
+		"_postman_id": "5beaa768-05e1-7504-7198-812bdb5762c4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"Test First Name\",\n\t\"lastName\": \"TestLastName\",\n\t\"phone\" : \"000-000-0000\",\n\t\"email\": \"test@email.com\",\n\t\"position\" : \"Test Position\",\n\t\"companyName\": \"Test Company Name\",\n\t\"tradingName\" : \"Test Trading Name\",\n\t\"cdibGrade\": \"Test CDIB Grade\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4201/api/users/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4201",
+					"path": [
+						"api",
+						"users",
+						"create"
+					]
+				},
+				"description": "This endpoint is for the creation of a user.\n\nThis is the basic attributes required for a user:\n\n1. id long/int - unique identifier of a user.\n2. firstName String - the user's first name.\n3. lastName String - the user's last name.\n4. phone String - the user's phone number.\n5. email String - the user's email address.\n6. position String - the user's position in their company\n7. companyName String - the company Name of the company the user tender's under\n8. tradingName String - the trading Name of the company the user tender's under\n9. cdibGrade String - the CIBD Grade "
+			},
+			"response": [
+				{
+					"id": "79837778-9037-4d9c-866d-941166e9d369",
+					"name": "Add User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\" : \"Test First Name\",\n\t\"lastName\": \"Test Last Name\",\n\t\"phone\" : \"000-000-0000\",\n\t\"email\": \"test@email.com\",\n\t\"position\" : \"Test Position\",\n\t\"companyName\": \"Test Company Name\",\n\t\"tradingName\" : \"Test Trading Name\",\n\t\"cdibGrade\": \"Test CDIB Grade\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4201/api/users/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4201",
+							"path": [
+								"api",
+								"users",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2019 10:45:28 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						}
+					],
+					"cookie": [],
+					"responseTime": 13,
+					"body": "{\"id\":2,\"firstName\":\"Test First Name\",\"lastName\":\"Test Last Name\",\"phone\":\"000-000-0000\",\"email\":\"test@email.com\",\"position\":\"Test Position\",\"companyName\":\"Test Company Name\",\"tradingName\":\"Test Trading Name\",\"cdibGrade\":\"Test CDIB Grade\"}"
+				}
+			]
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4201/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4201",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "This end point is for getting all usres that already exist on the system. Implicitly it does not ruire any arguments."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4201/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4201",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				},
+				"description": "This endpoint is for deleting a user by specifiying the user's id"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"UPDATED Test First Name\",\n    \"lastName\": \"UPDATED Test Last Name\",\n    \"phone\": \"UPDATED 000-000-0000\",\n    \"email\": \"UPDATED test@email.com\",\n    \"position\": \"UPDATED Test Position\",\n    \"companyName\": \"UPDATED Test Company Name\",\n    \"tradingName\": \"UPDATED Test Trading Name\",\n    \"cdibGrade\": \"UPDATED Test CDIB Grade\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4201/api/users/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4201",
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				},
+				"description": "This endpoint is for updating a user's details. The user's id is passed into the URL, with the updated user details forming part of the body.\n\nAttributes are as per \"Add User\" end point detailed earlier"
+			},
+			"response": [
+				{
+					"id": "d2a78037-1a1f-4ad6-9720-c1a48750f220",
+					"name": "Edit User",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"UPDATED Test First Name\",\n    \"lastName\": \"UPDATED Test Last Name\",\n    \"phone\": \"UPDATED 000-000-0000\",\n    \"email\": \"UPDATED test@email.com\",\n    \"position\": \"UPDATED Test Position\",\n    \"companyName\": \"UPDATED Test Company Name\",\n    \"tradingName\": \"UPDATED Test Trading Name\",\n    \"cdibGrade\": \"UPDATED Test CDIB Grade\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4201/api/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4201",
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2019 13:59:51 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						}
+					],
+					"cookie": [],
+					"responseTime": 39,
+					"body": "{\"id\":2,\"firstName\":\"UPDATED Test First Name\",\"lastName\":\"UPDATED Test Last Name\",\"phone\":\"UPDATED 000-000-0000\",\"email\":\"UPDATED test@email.com\",\"position\":\"UPDATED Test Position\",\"companyName\":\"UPDATED Test Company Name\",\"tradingName\":\"UPDATED Test Trading Name\",\"cdibGrade\":\"UPDATED Test CDIB Grade\"}"
+				}
+			]
+		},
+		{
+			"name": "Get User By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4201/api/users/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4201",
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				},
+				"description": "This is the endpoint to get a single user using the user's id.\nAttribute:\nid long/int "
+			},
+			"response": []
+		},
+		{
+			"name": "Get by last name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4201/api/users/lastName?lastName=TestLastName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4201",
+					"path": [
+						"api",
+						"users",
+						"lastName"
+					],
+					"query": [
+						{
+							"key": "lastName",
+							"value": "TestLastName",
+							"equals": true
+						}
+					]
+				},
+				"description": "This endpoint is for finding users by their last name. This String is appended to the end of the URL.\nAttribute:\nlastName String\n\nReturns a list of users."
+			},
+			"response": [
+				{
+					"id": "2d8fe053-05b0-4b08-8a96-8adce633efe8",
+					"name": "Get by last name",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:4201/api/users/lastName?lastName=TestLastName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4201",
+							"path": [
+								"api",
+								"users",
+								"lastName"
+							],
+							"query": [
+								{
+									"key": "lastName",
+									"value": "TestLastName",
+									"equals": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 May 2019 14:53:51 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						}
+					],
+					"cookie": [],
+					"responseTime": 79,
+					"body": "[{\"id\":3,\"firstName\":\"Test First Name\",\"lastName\":\"TestLastName\",\"phone\":\"000-000-0000\",\"email\":\"test@email.com\",\"position\":\"Test Position\",\"companyName\":\"Test Company Name\",\"tradingName\":\"Test Trading Name\",\"cdibGrade\":\"Test CDIB Grade\"},{\"id\":4,\"firstName\":\"Test First Name\",\"lastName\":\"TestLastName\",\"phone\":\"000-000-0000\",\"email\":\"test@email.com\",\"position\":\"Test Position\",\"companyName\":\"Test Company Name\",\"tradingName\":\"Test Trading Name\",\"cdibGrade\":\"Test CDIB Grade\"}]"
+				}
+			]
+		}
+	]
+}

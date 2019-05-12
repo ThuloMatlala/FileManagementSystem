@@ -34,8 +34,9 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/users/lastName/{lastName}")
-    public List<User> findByLastName(@PathVariable String lastName){
+
+    @GetMapping(value = "/users/lastName")
+    public List<User> findByLastName(@RequestParam(required = false) String lastName){
         return userService.GetUsersBySurname(lastName);
     }
 
