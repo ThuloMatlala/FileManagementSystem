@@ -1,10 +1,8 @@
 package com.tprice.userManagement.controller;
 
-import com.mysql.cj.xdevapi.JsonArray;
 import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.model.UserService;
-import org.hamcrest.Matchers;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)

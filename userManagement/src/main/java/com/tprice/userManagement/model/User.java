@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
 
-    public User(){};
+    public User(){}
 
     public User(String firstName, String lastName){
         this.firstName = firstName;
