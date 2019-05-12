@@ -1,6 +1,6 @@
 package com.tprice.userManagement;
 
-import com.tprice.userManagement.config.JavaTestConfig;
+import com.tprice.userManagement.config.TestConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 public class UserManagementApplicationTests {
 
 	@Mock
-	JavaTestConfig javaTestConfig;
+	TestConfig testConfig;
 
 	@Before
 	public void init(){
@@ -28,7 +28,7 @@ public class UserManagementApplicationTests {
 
 	@Test
 	public void shouldLoadTestConfiguration(){
-		when(javaTestConfig.GetContextString()).thenReturn("This is the test config bruh");
+		when(testConfig.getContextString()).thenReturn("This is the test config bruh");
 
 	}
 

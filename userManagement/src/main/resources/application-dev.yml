@@ -1,0 +1,5 @@
+spring:
+  message: DEV TIME! DEV TIME! DEV TIME!
+
+server:
+  port: 4201
