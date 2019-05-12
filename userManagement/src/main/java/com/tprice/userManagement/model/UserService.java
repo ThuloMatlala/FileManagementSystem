@@ -19,9 +19,7 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        List<User> usersList = new ArrayList<>();
-        userRepo.findAll().forEach(usersList::add);
-        return usersList;
+        return new ArrayList<>(userRepo.findAll());
     }
 
     public User GetUserById(long id){

@@ -3,7 +3,9 @@ package com.tprice.userManagement.controller;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.model.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,18 +20,18 @@ public class UserController {
     @PostMapping(value = "/users/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public User AddUser(@RequestBody User user)
     {
-
         return userService.AddUser(user);
     }
 
-    @GetMapping(value = "/users")
+    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> GetUsers(){
         return userService.getAllUsers();
     }
 
-    @GetMapping(value = "/users/{id}")
-    public User findById(@PathVariable long id){
-        return userService.GetUserById(id);
+    @GetMapping(value = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity findById(@PathVariable long id){
+        User user = userService.GetUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping(value = "/users/lastName/{lastName}")
