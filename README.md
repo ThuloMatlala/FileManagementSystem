@@ -1,3 +1,3 @@
 # UsermanagementTemplate
-This is a template for a suer mangement system
+This is a template for a user mangement system
 
