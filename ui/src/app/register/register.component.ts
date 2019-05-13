@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DataService } from '../_services/data.service';
+import { User } from '../_models/User';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +10,11 @@ import { DataService } from '../_services/data.service';
 })
 export class RegisterComponent implements OnInit {
 
+
+  returnData: any;
+  // firstName : string;
+
+  User: User;
 
   detailForm: FormGroup;
   post:any;
@@ -48,7 +54,8 @@ export class RegisterComponent implements OnInit {
        return;
      }
 
-     this.dataService.addUser(this.detailForm.value);
+     this.dataService.addUser(this.detailForm.value.subscribe(data => this.User = data)).subscribe(data => this.returnData = data);
+     this.firstName = this.returnData.firstName;
 
      this.success = true;
    }
