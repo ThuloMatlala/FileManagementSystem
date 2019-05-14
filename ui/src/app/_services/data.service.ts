@@ -8,7 +8,7 @@ import { User } from '../_models/User';
 export class DataService {
   
   addUser(user: User) {
-    return this.http.post(`http://localhost:4201/api/users/create`, user);
+    return this.http.post(`localhost:4201/api/users/create`, user);
   }
   
 
