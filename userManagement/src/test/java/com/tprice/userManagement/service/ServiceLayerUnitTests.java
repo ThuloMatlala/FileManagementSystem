@@ -1,5 +1,6 @@
 package com.tprice.userManagement.service;
 
+import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.repo.UserRepo;
 import org.junit.Assert;
@@ -28,7 +29,9 @@ public class ServiceLayerUnitTests {
 
     @Test
     public void getUsers(){
-        when(userRepo.findAll()).thenReturn(Stream.of(new User()).collect(Collectors.toList()));
+        when(userRepo.findAll()).thenReturn(Stream.of(
+                new User("TestFirstName0", "TestLastName0"),
+                new User("TestFirstName1", "TestLastName1")).collect(Collectors.toList()));
         Assert.assertEquals(1, userService.getAllUsers().size());
     }
 }

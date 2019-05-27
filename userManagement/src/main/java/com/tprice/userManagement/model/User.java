@@ -10,6 +10,12 @@ import javax.persistence.*;
 @Table(name = "user")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
+
+    public User(String firstName, String lastName){
+        setFirstName(firstName);
+        setLastName(lastName);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

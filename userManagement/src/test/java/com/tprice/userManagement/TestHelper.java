@@ -1,11 +1,13 @@
 package com.tprice.userManagement;
 
+import com.tprice.userManagement.model.User;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.test.util.ReflectionTestUtils;
 
 public class TestHelper {
 
-    public JSONObject AddSingleUser() throws JSONException
+    public JSONObject AddSingleUserJSONObject() throws JSONException
     {
         JSONObject userDetails = new JSONObject();
         userDetails.put("id", 1);
@@ -14,12 +16,10 @@ public class TestHelper {
         userDetails.put("phone", "+00(111)-222-3333");
         userDetails.put("position", "Test Position");
         userDetails.put("companyName", "Test Company");
-        userDetails.put("tradingName", "Test Trading Name");
-        userDetails.put("cdibGrade", "Test CDIB GRADE");
         return userDetails;
     }
 
-    public JSONObject AddMultipleUsers() throws JSONException
+    public JSONObject AddMultipleUserJSONObjects() throws JSONException
     {
         JSONObject userDetails = new JSONObject();
         JSONObject userObject = new JSONObject();
