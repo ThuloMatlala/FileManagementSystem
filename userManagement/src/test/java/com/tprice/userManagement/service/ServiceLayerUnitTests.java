@@ -32,6 +32,6 @@ public class ServiceLayerUnitTests {
         when(userRepo.findAll()).thenReturn(Stream.of(
                 new User("TestFirstName0", "TestLastName0"),
                 new User("TestFirstName1", "TestLastName1")).collect(Collectors.toList()));
-        Assert.assertEquals(1, userService.getAllUsers().size());
+        Assert.assertEquals(2 , userService.getAllUsers().size());
     }
 }
