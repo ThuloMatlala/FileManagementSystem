@@ -28,10 +28,18 @@ public class ServiceLayerUnitTests {
     private UserRepo userRepo;
 
     @Test
+    public void addUser(){
+        User newUser = new User("TestFirstName0", "TestLastName0");
+        when(userRepo.save(newUser)).thenReturn(newUser);
+        Assert.assertEquals(new User("TestFirstName2", "TestLastName2"), userService.AddUser(newUser));
+    }
+
+    @Test
     public void getUsers(){
         when(userRepo.findAll()).thenReturn(Stream.of(
                 new User("TestFirstName0", "TestLastName0"),
                 new User("TestFirstName1", "TestLastName1")).collect(Collectors.toList()));
         Assert.assertEquals(2 , userService.getAllUsers().size());
     }
+
 }
