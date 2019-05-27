@@ -38,9 +38,6 @@ public class UserService {
         userToUpdate.setEmail(newUserDetails.getEmail());
         userToUpdate.setPhone(newUserDetails.getPhone());
         userToUpdate.setCompanyName(newUserDetails.getCompanyName());
-        userToUpdate.setTradingName(newUserDetails.getTradingName());
-        userToUpdate.setPosition(newUserDetails.getPosition());
-        userToUpdate.setCdibGrade(newUserDetails.getCdibGrade());
         return userRepo.save(userToUpdate);
     }
 
