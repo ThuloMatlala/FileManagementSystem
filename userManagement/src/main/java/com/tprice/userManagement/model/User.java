@@ -11,6 +11,8 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
+    public User(){};
+
     public User(String firstName, String lastName){
         setFirstName(firstName);
         setLastName(lastName);
