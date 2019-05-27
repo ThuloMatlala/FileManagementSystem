@@ -2,7 +2,7 @@ package com.tprice.userManagement.controller;
 
 import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
-import com.tprice.userManagement.model.UserService;
+import com.tprice.userManagement.service.UserService;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;

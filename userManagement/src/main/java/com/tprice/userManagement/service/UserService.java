@@ -1,5 +1,6 @@
-package com.tprice.userManagement.model;
+package com.tprice.userManagement.service;
 
+import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

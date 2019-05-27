@@ -1,7 +1,7 @@
 package com.tprice.userManagement.controller;
 
 import com.tprice.userManagement.model.User;
-import com.tprice.userManagement.model.UserService;
+import com.tprice.userManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
