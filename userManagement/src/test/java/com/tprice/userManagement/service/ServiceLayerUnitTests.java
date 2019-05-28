@@ -1,6 +1,5 @@
 package com.tprice.userManagement.service;
 
-import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.repo.UserRepo;
 import org.junit.Assert;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.junit.Assert.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,7 +29,15 @@ public class ServiceLayerUnitTests {
     public void addUser(){
         User newUser = new User("TestFirstName0", "TestLastName0");
         when(userRepo.save(newUser)).thenReturn(newUser);
-        Assert.assertEquals(new User("TestFirstName2", "TestLastName2"), userService.AddUser(newUser));
+        Assert.assertEquals(newUser, userService.AddUser(newUser));
+    }
+
+    @Test
+    public void getUserById(){
+        User mockUser = new User("TestLastName0", "TestLastName0");
+        Long id = 1L;
+        when(userRepo.getOne(id)).thenReturn(mockUser);
+        Assert.assertEquals(mockUser, userService.GetUserById(id));
     }
 
     @Test
