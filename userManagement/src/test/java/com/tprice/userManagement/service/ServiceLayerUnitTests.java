@@ -64,4 +64,15 @@ public class ServiceLayerUnitTests {
         userService.DeleteUserById(userToDeleted.getId());
         verify(userRepo, times(1)).deleteById(userToDeleted.getId());
     }
+
+    @Test
+    public void addUser_EmailAlreadyExisting(){
+
+        User newUser = new User("TestFirstName0", "TestLastName0");
+        User newUser2 = new User("TestFirstName0", "TestLastName0");
+        when(userRepo.save(newUser)).thenReturn(newUser);
+        when(userRepo.save(newUser2)).thenReturn(newUser2);
+        Assert.assertEquals(newUser, userService.SaveUser(newUser));
+        Assert.assertEquals(newUser2, userService.SaveUser(newUser2));
+    }
 }

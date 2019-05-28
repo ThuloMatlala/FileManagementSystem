@@ -16,6 +16,7 @@ public class UserService {
 
     public User SaveUser(User user)
     {
+        //CHeck if user exists and return with message if they do
         return userRepo.save(user);
     }
 
