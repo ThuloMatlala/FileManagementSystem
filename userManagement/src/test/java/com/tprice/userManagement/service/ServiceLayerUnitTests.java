@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -55,5 +55,13 @@ public class ServiceLayerUnitTests {
         User userToFound2 = new User("Test@email.com1", "Test_Password1");
         when(userRepo.findByLastName(lastName)).thenReturn(Stream.of(userToFound, userToFound2).collect(Collectors.toList()));
         Assert.assertEquals(2, userService.FindUsersByLastName(lastName).size());
+    }
+
+    @Test
+    public void deleteUser(){
+        User userToDeleted = new User("Test@email.com0", "Test_Password0");
+//        ReflectionTestUtils.setField("userToFound", "id", 1);
+        userService.DeleteUserById(userToDeleted.getId());
+        verify(userRepo, times(1)).deleteById(userToDeleted.getId());
     }
 }

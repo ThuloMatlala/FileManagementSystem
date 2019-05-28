@@ -41,7 +41,7 @@ public class UserService {
         return userRepo.save(userToUpdate);
     }
 
-    public void DeleteUser(Long id) {
+    public void DeleteUserById(Long id) {
         userRepo.deleteById(id);
     }
 }
