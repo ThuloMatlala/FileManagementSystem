@@ -34,7 +34,7 @@ public class ServiceLayerUnitTests {
 
     @Test
     public void getUserById(){
-        User mockUser = new User("TestLastName0", "TestLastName0");
+        User mockUser = new User("Test@email.com0", "Test_Password0");
         Long id = 1L;
         when(userRepo.getOne(id)).thenReturn(mockUser);
         Assert.assertEquals(mockUser, userService.GetUserById(id));
@@ -43,8 +43,8 @@ public class ServiceLayerUnitTests {
     @Test
     public void getUsers(){
         when(userRepo.findAll()).thenReturn(Stream.of(
-                new User("TestFirstName0", "TestLastName0"),
-                new User("TestFirstName1", "TestLastName1")).collect(Collectors.toList()));
+                new User("Test@email.com0", "Test_Password0"),
+                new User("Test@email.com1", "Test_Password1")).collect(Collectors.toList()));
         Assert.assertEquals(2 , userService.getAllUsers().size());
     }
 
