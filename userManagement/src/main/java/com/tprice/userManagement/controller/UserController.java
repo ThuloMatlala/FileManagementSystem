@@ -20,24 +20,24 @@ public class UserController {
     @PostMapping(value = "/users/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public User AddUser(@RequestBody User user)
     {
-        return userService.AddUser(user);
+        return userService.SaveUser(user);
     }
 
     @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> GetUsers(){
-        return userService.getAllUsers();
+        return userService.findAllUsers();
     }
 
     @GetMapping(value = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity findById(@PathVariable long id){
-        User user = userService.GetUserById(id);
+        User user = userService.GetOneUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 
     @GetMapping(value = "/users/lastName")
     public List<User> findByLastName(@RequestParam(required = false) String lastName){
-        return userService.GetUsersBySurname(lastName);
+        return userService.FindUsersByLastName(lastName);
     }
 
     @PutMapping(value = "/users/{id}")

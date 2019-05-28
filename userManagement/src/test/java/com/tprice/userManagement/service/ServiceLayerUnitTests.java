@@ -29,15 +29,7 @@ public class ServiceLayerUnitTests {
     public void addUser(){
         User newUser = new User("TestFirstName0", "TestLastName0");
         when(userRepo.save(newUser)).thenReturn(newUser);
-        Assert.assertEquals(newUser, userService.AddUser(newUser));
-    }
-
-    @Test
-    public void getUserById(){
-        User mockUser = new User("Test@email.com0", "Test_Password0");
-        Long id = 1L;
-        when(userRepo.getOne(id)).thenReturn(mockUser);
-        Assert.assertEquals(mockUser, userService.GetUserById(id));
+        Assert.assertEquals(newUser, userService.SaveUser(newUser));
     }
 
     @Test
@@ -45,7 +37,23 @@ public class ServiceLayerUnitTests {
         when(userRepo.findAll()).thenReturn(Stream.of(
                 new User("Test@email.com0", "Test_Password0"),
                 new User("Test@email.com1", "Test_Password1")).collect(Collectors.toList()));
-        Assert.assertEquals(2 , userService.getAllUsers().size());
+        Assert.assertEquals(2 , userService.findAllUsers().size());
     }
 
+    @Test
+    public void getUserById(){
+        User mockUser = new User("Test@email.com0", "Test_Password0");
+        Long id = 1L;
+        when(userRepo.getOne(id)).thenReturn(mockUser);
+        Assert.assertEquals(mockUser, userService.GetOneUserById(id));
+    }
+
+    @Test
+    public void getUserByLastName(){
+        String lastName = "TestLastName";
+        User userToFound = new User("Test@email.com0", "Test_Password0");
+        User userToFound2 = new User("Test@email.com1", "Test_Password1");
+        when(userRepo.findByLastName(lastName)).thenReturn(Stream.of(userToFound, userToFound2).collect(Collectors.toList()));
+        Assert.assertEquals(2, userService.FindUsersByLastName(lastName).size());
+    }
 }

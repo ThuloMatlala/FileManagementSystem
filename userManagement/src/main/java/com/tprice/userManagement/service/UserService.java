@@ -14,20 +14,20 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    public User AddUser(User user)
+    public User SaveUser(User user)
     {
         return userRepo.save(user);
     }
 
-    public List<User> getAllUsers() {
+    public List<User> findAllUsers() {
         return new ArrayList<>(userRepo.findAll());
     }
 
-    public User GetUserById(long id){
+    public User GetOneUserById(long id){
         return userRepo.getOne(id);
     }
 
-    public List<User> GetUsersBySurname(String lastName) {
+    public List<User> FindUsersByLastName(String lastName) {
         return userRepo.findByLastName(lastName);
     }
 
