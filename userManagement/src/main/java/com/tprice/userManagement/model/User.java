@@ -40,4 +40,7 @@ public class User {
     @Column(name = "companyName")
     private String companyName;
 
+    @Column(name = "passWord")
+    private String passWord;
+
 }
