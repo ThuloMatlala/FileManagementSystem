@@ -1,6 +1,5 @@
 package com.tprice.userManagement.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.service.UserService;
@@ -40,7 +39,10 @@ public class UserControllerTest {
                 .content(mapper.writeValueAsString(user))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName").value(user.getFirstName()));
+                .andExpect(jsonPath("$.firstName").value(user.getFirstName()))
+                .andExpect(jsonPath("$.lastName").value(user.getLastName()))
+                .andExpect(jsonPath("$.email").value(user.getEmail()))
+                .andExpect(jsonPath("$.password").value(user.getPassword()));
     }
 
 }
