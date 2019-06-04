@@ -17,11 +17,16 @@ public class TestHelper {
     }
 
     public List<User> CreateMultipleUsers() {
-        for(int i=0; i < 5; i++){
+
+        List<User> userList = new ArrayList<>();
+
+        for(int i=1; i < 5; i++){
             User user = new User("Test First Name", "Test Last Name", "Test@email", "test Password");
+            user.setId(i);
             user.setFirstName(String.format("%d%s",i, user.getFirstName()));
+            userList.add(user);
         }
 
-        return new ArrayList<>();
+        return userList;
     }
 }
