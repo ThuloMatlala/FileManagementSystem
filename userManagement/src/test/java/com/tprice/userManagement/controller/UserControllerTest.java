@@ -1,18 +1,26 @@
 package com.tprice.userManagement.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,9 +37,11 @@ public class UserControllerTest {
 
     ObjectMapper mapper = new ObjectMapper();
 
+    private TestHelper testHelper = new TestHelper();
+
     @Test
     public void addUserShouldReturnCreatedUser() throws Exception {
-        User user = new User("TestFirstName", "TestLastName", "Test@Email", "TestPassword");
+        User user = testHelper.CreateSingleUser();
 
         when(userService.SaveUser(user)).thenReturn(user);
 
@@ -45,12 +55,21 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.password").value(user.getPassword()));
     }
 
+
+    @Test
+    public void getAllUsers() throws Exception {
+        List<User> userList = testHelper.CreateMultipleUsers();
+
+        when(userService.findAllUsers()).thenReturn(userList);
+
+        mockMvc.perform(get("/api/users")
+        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+    }
+
 }
 
-//    @Test
-//    public void getAllUsers() throws Exception {
-//        mockMvc.perform(get("/api/users")).andExpect(status().isOk());
-//    }
 //
 //    @Test
 //    public void findById() throws Exception {
