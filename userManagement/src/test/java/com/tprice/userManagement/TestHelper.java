@@ -3,7 +3,6 @@ package com.tprice.userManagement;
 import com.tprice.userManagement.model.User;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.test.util.ReflectionTestUtils;
 
 public class TestHelper {
 
@@ -13,6 +12,8 @@ public class TestHelper {
         userDetails.put("id", 1);
         userDetails.put("firstName", "Test First Name");
         userDetails.put("lastName", "Test Last Name");
+        userDetails.put("email", "Test@email");
+        userDetails.put("password", "test Password");
         userDetails.put("phone", "+00(111)-222-3333");
         userDetails.put("position", "Test Position");
         userDetails.put("companyName", "Test Company");
@@ -26,6 +27,8 @@ public class TestHelper {
         userDetails.put("id", 1);
         userDetails.put("firstName", "Test First Name");
         userDetails.put("lastName", "Test Last Name");
+        userDetails.put("email", "Test@email");
+        userDetails.put("password", "test Password");
         userDetails.put("phone", "+00(111)-222-3333");
         userDetails.put("position", "Test Position");
         userDetails.put("companyName", "Test Company");
@@ -34,6 +37,8 @@ public class TestHelper {
         userDetails.put("id", 2);
         userDetails.put("firstName", "2Test First Name");
         userDetails.put("lastName", "2Test Last Name");
+        userDetails.put("email", "2Test@email");
+        userDetails.put("password", "2test Password");
         userDetails.put("phone", "2+00(111)-222-3333");
         userDetails.put("position", "2Test Position");
         userDetails.put("companyName", "2Test Company");
@@ -41,6 +46,8 @@ public class TestHelper {
         userDetails.put("id", 3);
         userDetails.put("firstName", "3Test First Name");
         userDetails.put("lastName", "3Test Last Name");
+        userDetails.put("email", "3Test@email");
+        userDetails.put("password", "3test Password");
         userDetails.put("phone", "3+00(111)-222-3333");
         userDetails.put("position", "3Test Position");
         userDetails.put("companyName", "3Test Company");
@@ -56,5 +63,10 @@ public class TestHelper {
         userObject.put("user", userDetails);
 
         return userObject;
+    }
+
+    public User CreateSinglerUser(JSONObject userDetailsJSON) throws JSONException {
+        User user = new User("Test First Name", "Test Last Name", "Test@email", "test Password");
+        return user;
     }
 }
