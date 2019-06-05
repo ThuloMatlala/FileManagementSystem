@@ -26,7 +26,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
-
+//THE FOLLOWING TESTS ARE FOR TESTING WHETHER THE CONTROLLER RETURNS THE REQUIRED OBJECTS IDEALLY.
+// I AM TESTING OBJECT MAPPING FROM MODEL TO VIEW.
+//  THESE ARE NOT FOR TESTING BUSINESS LOGIC
     @MockBean
     private UserService userService;
 
@@ -54,6 +56,7 @@ public class UserControllerTest {
     }
 
 
+
     @Test
         public void getAllUsers() throws Exception {
         List<User> userList = testHelper.CreateMultipleUsers();
@@ -72,13 +75,18 @@ public class UserControllerTest {
         verifyNoMoreInteractions(userService);
     }
 
+
+//    @Test
+//    public void findById() throws Exception {
+//        User user = testHelper.CreateSingleUser();
+//        long userId = 1;
+//        when(userService.GetOneUserById(userId)).thenReturn();
+//
+//        mockMvc.perform(get("/api/users/{id}",1L).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+//    }
 }
 
 //
-//    @Test
-//    public void findById() throws Exception {
-//        mockMvc.perform(get("/api/users/{id}",1L).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-//    }
 //
 //    @Test
 //    public void findByLastName() throws Exception {

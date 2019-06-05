@@ -21,7 +21,8 @@ public class TestHelper {
         for(int i=1; i < 5; i++){
             User user = new User("Test First Name", "Test Last Name", "Test@email", "test Password");
             user.setId(i);
-            user.setFirstName(String.format("%d%s",i, user.getFirstName()));
+            user.setFirstName(String.format("%d%s",user.getId(), user.getFirstName()));
+            System.out.println(user);
             userList.add(user);
         }
 
