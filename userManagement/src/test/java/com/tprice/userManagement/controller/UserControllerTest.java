@@ -94,9 +94,9 @@ public class UserControllerTest {
 
     @Test
     public void findByLastNameShouldReturnASingleUser() throws Exception {
-        User user = testHelper.CreateSingleUser();
+        List<User> userList = testHelper.CreateMultipleUsers();
         String userLastName = "Test Last Name";
-        when(userService.FindUsersByLastName(userLastName));
+        when(userService.FindUsersByLastName(userLastName)).thenReturn(userList);
 
         mockMvc.perform(get("/api/users/lastName?lastName={lastName}", userLastName)
                 .accept(MediaType.APPLICATION_JSON))
