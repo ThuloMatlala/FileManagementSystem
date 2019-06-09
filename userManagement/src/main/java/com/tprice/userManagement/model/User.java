@@ -14,12 +14,14 @@ public class User {
     public User(){};
 
     public User(String firstName, String lastName, String email, String password){
+        setFirstName(firstName);
+        setLastName(lastName);
         setFirstName(email);
         setLastName(password);
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
     @Column(name = "email", unique=true)

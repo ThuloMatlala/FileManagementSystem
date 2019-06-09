@@ -1,6 +1,7 @@
 package com.tprice.userManagement.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
 import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.service.UserService;
@@ -16,7 +17,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -58,7 +61,7 @@ public class UserControllerTest {
 
 
     @Test
-        public void getAllUsers() throws Exception {
+        public void getAllUsersShouldReturnAListOfUsers() throws Exception {
         List<User> userList = testHelper.CreateMultipleUsers();
 
         when(userService.findAllUsers()).thenReturn(userList);
@@ -76,14 +79,31 @@ public class UserControllerTest {
     }
 
 
-//    @Test
-//    public void findById() throws Exception {
-//        User user = testHelper.CreateSingleUser();
-//        long userId = 1;
-//        when(userService.GetOneUserById(userId)).thenReturn();
-//
-//        mockMvc.perform(get("/api/users/{id}",1L).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-//    }
+    @Test
+    public void findByIdShouldReturnASingleUser() throws Exception {
+        User user = testHelper.CreateSingleUser();
+        long userId = 1;
+        when(userService.GetOneUserById(userId)).thenReturn(user);
+
+        mockMvc.perform(get("/api/users/{id}",1L)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        verify(userService, times(1)).GetOneUserById(userId);
+        verifyNoMoreInteractions(userService);
+    }
+
+    @Test
+    public void findByLastNameShouldReturnASingleUser() throws Exception {
+        User user = testHelper.CreateSingleUser();
+        String userLastName = "Test Last Name";
+        when(userService.FindUsersByLastName(userLastName));
+
+        mockMvc.perform(get("/api/users/lastName?lastName={lastName}", userLastName)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        verify(userService, times(1)).FindUsersByLastName(userLastName);
+        verifyNoMoreInteractions(userService);
+    }
 }
 
 //

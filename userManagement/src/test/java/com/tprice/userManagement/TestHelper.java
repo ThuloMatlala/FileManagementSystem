@@ -14,15 +14,16 @@ public class TestHelper {
         return user;
     }
 
-    public List<User> CreateMultipleUsers() {
+    public List<User> CreateMultipleUsers()
+    {
 
         List<User> userList = new ArrayList<>();
 
-        for(int i=1; i < 5; i++){
+        for(int i=1; i < 5; i++)
+        {
             User user = new User("Test First Name", "Test Last Name", "Test@email", "test Password");
             user.setId(i);
             user.setFirstName(String.format("%d%s",user.getId(), user.getFirstName()));
-            System.out.println(user);
             userList.add(user);
         }
 
