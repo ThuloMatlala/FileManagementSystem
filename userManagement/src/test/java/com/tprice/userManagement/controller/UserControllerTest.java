@@ -85,33 +85,33 @@ public class UserControllerTest {
         long userId = 1;
         when(userService.GetOneUserById(userId)).thenReturn(user);
 
-        mockMvc.perform(get("/api/users/{id}",1L)
+        mockMvc.perform(get("/api/users/{id}",1)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", Matchers.is(((int) user.getId()))))
+                .andExpect(jsonPath("$.firstName", Matchers.is(user.getFirstName())))
+                .andExpect(jsonPath("$.lastName", Matchers.is(user.getLastName())))
+                .andExpect(jsonPath("$.email", Matchers.is(user.getEmail())))
+                .andExpect(jsonPath("$.password", Matchers.is(user.getPassword())));
         verify(userService, times(1)).GetOneUserById(userId);
         verifyNoMoreInteractions(userService);
     }
 
-    @Test
-    public void findByLastNameShouldReturnASingleUser() throws Exception {
-        List<User> userList = testHelper.CreateMultipleUsers();
-        String userLastName = "Test Last Name";
-        when(userService.FindUsersByLastName(userLastName)).thenReturn(userList);
-
-        mockMvc.perform(get("/api/users/lastName?lastName={lastName}", userLastName)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-        verify(userService, times(1)).FindUsersByLastName(userLastName);
-        verifyNoMoreInteractions(userService);
-    }
+//    @Test
+//    public void findByLastNameShouldReturnAListOfUsers() throws Exception {
+//        List<User> userList = testHelper.CreateMultipleUsers();
+//        String userLastName = "Test Last Name";
+//        when(userService.FindUsersByLastName(userLastName)).thenReturn(userList);
+//
+//        mockMvc.perform(get("/api/users/lastName?lastName={lastName}", userLastName)
+//                .accept(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk());
+//        verify(userService, times(1)).FindUsersByLastName(userLastName);
+//        verifyNoMoreInteractions(userService);
+//    }
 }
 
-//
-//
-//    @Test
-//    public void findByLastName() throws Exception {
-//        mockMvc.perform(get("/api/users/lastName?lastName={lastName}", "THULO").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-//    }
 //
 //    @Test
 //    public void editUser() throws Exception {
