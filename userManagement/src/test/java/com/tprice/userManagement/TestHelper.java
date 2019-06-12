@@ -23,10 +23,13 @@ public class TestHelper {
         {
             User user = new User("Test First Name", "Test Last Name", "Test@email", "test Password");
             user.setId(i);
-            user.setFirstName(String.format("%d%s",user.getId(), user.getFirstName()));
+            user.setFirstName(String.format("%d%s", user.getId(), user.getFirstName()));
+            user.setLastName(String.format("%d%s", user.getId(), user.getLastName()));
+            user.setEmail(String.format("%d%s", user.getId(), user.getEmail()));
+            user.setPassword(String.format("%d%s", user.getId(), user.getPassword()));
             userList.add(user);
         }
-
+        System.out.println(userList);
         return userList;
     }
 }

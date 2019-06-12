@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -98,18 +99,19 @@ public class UserControllerTest {
         verifyNoMoreInteractions(userService);
     }
 
-//    @Test
-//    public void findByLastNameShouldReturnAListOfUsers() throws Exception {
-//        List<User> userList = testHelper.CreateMultipleUsers();
-//        String userLastName = "Test Last Name";
-//        when(userService.FindUsersByLastName(userLastName)).thenReturn(userList);
-//
-//        mockMvc.perform(get("/api/users/lastName?lastName={lastName}", userLastName)
-//                .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
-//        verify(userService, times(1)).FindUsersByLastName(userLastName);
-//        verifyNoMoreInteractions(userService);
-//    }
+    @Test
+    public void findByLastNameShouldReturnAListOfUsers() throws Exception {
+        List<User> userList = testHelper.CreateMultipleUsers();
+        String userLastName = "Test Last Name";
+        when(userService.FindUsersByLastName(userLastName)).thenReturn(userList);
+
+        mockMvc.perform(get("/api/users/lastName?lastName={lastName}", userLastName)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$", Matchers.hasSize(4)));
+        verifyNoMoreInteractions(userService);
+    }
 }
 
 //
