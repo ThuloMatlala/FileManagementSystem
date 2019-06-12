@@ -108,11 +108,17 @@ public class UserControllerTest {
         String userLastName = "1Test Last Name";
         userList = userList.stream().filter(d -> d.getLastName().equals(userLastName)).collect(Collectors.toList());
         when(userService.FindUsersByLastName(userLastName)).thenReturn(userList);
+
+        User expectedUser = userList.stream().filter(d -> d.getLastName().equals(userLastName)).findFirst().orElse(null);
         mockMvc.perform(get("/api/users/lastName?lastName={lastName}", userLastName)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$", Matchers.hasSize(1)));
+                .andExpect(jsonPath("$", Matchers.hasSize(1)))
+                .andExpect(jsonPath("$[0].email", Matchers.is(expectedUser.getEmail())))
+                .andExpect(jsonPath("$[0].password", Matchers.is(expectedUser.getPassword())))
+                .andExpect(jsonPath("$[0].firstName", Matchers.is(expectedUser.getFirstName())))
+                .andExpect(jsonPath("$[0].lastName", Matchers.is(expectedUser.getLastName())));
         verify(userService, times(1)).FindUsersByLastName(userLastName);
         verifyNoMoreInteractions(userService);
     }
