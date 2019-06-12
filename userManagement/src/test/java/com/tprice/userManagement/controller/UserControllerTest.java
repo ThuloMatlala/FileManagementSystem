@@ -1,7 +1,7 @@
 package com.tprice.userManagement.controller;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.jsonpath.JsonPath;
 import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.service.UserService;
@@ -16,15 +16,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -59,6 +55,26 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.email").value(user.getEmail()))
                 .andExpect(jsonPath("$.password").value(user.getPassword()));
         verify(userService, times(1)).findAllUsers();
+        verifyNoMoreInteractions(userService);
+    }
+
+
+    @Test
+    public void editUserShouldReturnUserWithUpdatedPassword() throws Exception {
+        User user = testHelper.CreateSingleUser();
+        String newPassword = "new Password";
+
+        user.setPassword(newPassword);
+        when(userService.EditUser(user.getId(), user)).thenReturn(user);
+
+        mockMvc.perform(put("/api/users/{id}", user.getId())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(mapper.writeValueAsString(user)))
+                .andExpect(jsonPath("$.firstName", Matchers.is(user.getFirstName())))
+                .andExpect(jsonPath("$.lastName", Matchers.is(user.getLastName())))
+                .andExpect(jsonPath("$.email", Matchers.is(user.getEmail())))
+                .andExpect(jsonPath("$.password", Matchers.is(newPassword)));
+        verify(userService, times(1)).EditUser(user.getId(), user);
         verifyNoMoreInteractions(userService);
     }
 
@@ -122,18 +138,11 @@ public class UserControllerTest {
         verify(userService, times(1)).FindUsersByLastName(userLastName);
         verifyNoMoreInteractions(userService);
     }
+
+
+
 }
 
-//
-//    @Test
-//    public void editUser() throws Exception {
-//        testHelper = new TestHelper();
-//        JSONObject userDetails = testHelper.AddSingleUserJSONObject();
-//
-//        mockMvc.perform(put("/api/users/{id}", 1L).
-//                contentType(MediaType.APPLICATION_JSON).content(userDetails.toString()))
-//                .andExpect(status().isOk());
-//    }
 //
 //    @Test
 //    public void deleteUser() throws Exception {
