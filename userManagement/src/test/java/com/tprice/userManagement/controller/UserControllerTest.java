@@ -57,6 +57,8 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.lastName").value(user.getLastName()))
                 .andExpect(jsonPath("$.email").value(user.getEmail()))
                 .andExpect(jsonPath("$.password").value(user.getPassword()));
+        verify(userService, times(1)).findAllUsers();
+        verifyNoMoreInteractions(userService);
     }
 
 
@@ -110,6 +112,7 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", Matchers.hasSize(4)));
+        verify(userService, times(1)).FindUsersByLastName(userLastName);
         verifyNoMoreInteractions(userService);
     }
 }

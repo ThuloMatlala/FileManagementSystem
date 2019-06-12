@@ -16,8 +16,8 @@ public class User {
     public User(String firstName, String lastName, String email, String password){
         setFirstName(firstName);
         setLastName(lastName);
-        setFirstName(email);
-        setLastName(password);
+        setEmail(email);
+        setPassword(password);
     }
 
     @Id
