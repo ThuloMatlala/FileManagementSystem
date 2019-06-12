@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -104,14 +105,14 @@ public class UserControllerTest {
     @Test
     public void findByLastNameShouldReturnAListOfUsers() throws Exception {
         List<User> userList = testHelper.CreateMultipleUsers();
-        String userLastName = "Test Last Name";
+        String userLastName = "1Test Last Name";
+        userList = userList.stream().filter(d -> d.getLastName().equals(userLastName)).collect(Collectors.toList());
         when(userService.FindUsersByLastName(userLastName)).thenReturn(userList);
-
         mockMvc.perform(get("/api/users/lastName?lastName={lastName}", userLastName)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$", Matchers.hasSize(4)));
+                .andExpect(jsonPath("$", Matchers.hasSize(1)));
         verify(userService, times(1)).FindUsersByLastName(userLastName);
         verifyNoMoreInteractions(userService);
     }
