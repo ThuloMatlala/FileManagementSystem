@@ -22,11 +22,11 @@ public class TestHelper {
         for(int i=1; i < 5; i++)
         {
             User user = new User("Test First Name", "Test Last Name", "Test@email", "test Password");
-            user.setId(i);
-            user.setFirstName(String.format("%d%s", user.getId(), user.getFirstName()));
-            user.setLastName(String.format("%d%s", user.getId(), user.getLastName()));
-            user.setEmail(String.format("%d%s", user.getId(), user.getEmail()));
-            user.setPassword(String.format("%d%s", user.getId(), user.getPassword()));
+//            user.setId(i);
+            user.setFirstName(String.format("%d%s", i, user.getFirstName()));
+            user.setLastName(String.format("%d%s", i, user.getLastName()));
+            user.setEmail(String.format("%d%s", i, user.getEmail()));
+            user.setPassword(String.format("%d%s", i, user.getPassword()));
             userList.add(user);
         }
         System.out.println(userList);

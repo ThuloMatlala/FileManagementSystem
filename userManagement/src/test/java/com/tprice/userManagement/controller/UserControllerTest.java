@@ -6,8 +6,10 @@ import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.service.UserService;
 import org.hamcrest.Matchers;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -40,6 +42,11 @@ public class UserControllerTest {
 
     private TestHelper testHelper = new TestHelper();
 
+    @Before
+    public void setUp(){
+        Mockito.reset(userService);
+    }
+
     @Test
     public void addUserShouldReturnCreatedUser() throws Exception {
         User user = testHelper.CreateSingleUser();
@@ -54,7 +61,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.lastName").value(user.getLastName()))
                 .andExpect(jsonPath("$.email").value(user.getEmail()))
                 .andExpect(jsonPath("$.password").value(user.getPassword()));
-        verify(userService, times(1)).findAllUsers();
+        verify(userService, times(1)).SaveUser(user);
         verifyNoMoreInteractions(userService);
     }
 
@@ -91,7 +98,6 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", Matchers.hasSize(4)))
-                .andExpect(jsonPath("$[0].id", Matchers.is(1)))
                 .andExpect(jsonPath("$[0].firstName").value(userList.get(0).getFirstName()))
                 .andExpect(jsonPath("$[0].lastName").value(userList.get(0).getLastName()));
         verify(userService, times(1)).findAllUsers();
@@ -139,14 +145,15 @@ public class UserControllerTest {
         verifyNoMoreInteractions(userService);
     }
 
+    @Test
+    public void deleteUserShouldReturnAnOkStatus() throws Exception {
+        List<User> user = testHelper.CreateMultipleUsers();
+        long userId = 3;
 
-
+        mockMvc.perform(delete("/api/users/{id}", userId))
+                .andExpect(status().isOk());
+        verify(userService, times(1)).DeleteUserById(userId);
+        verifyNoMoreInteractions(userService);
+    }
 }
 
-//
-//    @Test
-//    public void deleteUser() throws Exception {
-//        mockMvc.perform(delete("/api/users/{id}", 1L) .contentType(MediaType.APPLICATION_JSON)
-//        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
-//    }
