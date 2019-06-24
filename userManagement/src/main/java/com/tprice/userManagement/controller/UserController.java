@@ -17,6 +17,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String ContextLoadT(){
+        return "Si on";
+    }
+
+
     @PostMapping(value = "/users/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public User AddUser(@RequestBody User user)
     {
