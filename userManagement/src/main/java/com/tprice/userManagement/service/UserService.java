@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -26,7 +27,8 @@ public class UserService {
     }
 
     public User GetOneUserById(long id){
-        return userRepo.getOne(id);
+        Optional<User> userByIdOptional = userRepo.findById(id);
+        return userByIdOptional.orElse(new User("NOT FOUND", "NOT FOUND", "NOT FOUND", "NOT FOUND"));
     }
 
     public List<User> FindUsersByLastName(String lastName) {

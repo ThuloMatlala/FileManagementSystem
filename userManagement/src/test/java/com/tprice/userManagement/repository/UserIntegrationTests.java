@@ -1,22 +1,39 @@
 package com.tprice.userManagement.repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tprice.userManagement.TestHelper;
 import com.tprice.userManagement.model.User;
 import com.tprice.userManagement.repo.UserRepo;
+import com.tprice.userManagement.service.UserService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
 import static org.assertj.core.api.Assertions.*;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class UserRepoTests {
+public class UserIntegrationTests
+{
+
+    @MockBean
+    private UserService userService;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     private TestEntityManager entityManager;
@@ -26,12 +43,15 @@ public class UserRepoTests {
     @Autowired
     private UserRepo userRepo;
 
-    @Test
-    public void GetAllUsersToReturnListOfUsers() throws Exception {
-        List<User> userList = testHelper.CreateMultipleUsers();
-        userList.forEach(user -> this.entityManager.persist(user));
-//        userList.forEach(this.entityManager::persist);
-        List<User> users = this.userRepo.findAll();
-        assertThat(userList.size()).isEqualTo(users.size());
+    private List<User> userList;
+
+    @Before
+    public void setUp()
+    {
+        userList = testHelper.CreateMultipleUsers();
+        userList.forEach(user -> this.entityManager.persistAndFlush(user));
+        Mockito.reset(userService);
     }
+
+
 }

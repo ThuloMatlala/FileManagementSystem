@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "user")
+@TableGenerator(name="tab", initialValue=0, allocationSize=50)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
@@ -21,7 +22,7 @@ public class User {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "email", unique=true)
