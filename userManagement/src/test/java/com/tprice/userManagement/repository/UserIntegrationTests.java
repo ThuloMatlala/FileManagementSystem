@@ -43,10 +43,11 @@ public class UserIntegrationTests {
     @Autowired
     private ObjectMapper mapper;
 
+    private List<User> userList;
     @Before
     public void setup()
     {
-        List<User> userList = testHelper.CreateMultipleUsers();
+        userList = testHelper.CreateMultipleUsers();
         userList.forEach(user -> {
             try {
                 mockMvc.perform(MockMvcRequestBuilders.post("/api/users/create")
@@ -71,9 +72,12 @@ public class UserIntegrationTests {
     }
 
     @Test
-    public void GetAllUsersShouldReturnAnEmptyListOfUsers() throws Exception {
+    public void GetAllUsersShouldReturnAListOfUsers() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/users")
                 .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$", Matchers.hasSize(4)))
+                .andExpect(jsonPath("$[0].firstName").value(userList.get(0).getFirstName()))
+                .andExpect(jsonPath("$[0].lastName").value(userList.get(0).getLastName()))
                 .andExpect(status().isOk())
                 .andReturn();
     }
