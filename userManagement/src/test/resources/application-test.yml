@@ -4,8 +4,10 @@ spring:
 server:
   port: 0420
 
+version: 0.1
 phases:
   install:
+    commands:
     - echo Nothing to do in the install phase...
   pre_build:
     commands:
@@ -14,13 +16,7 @@ phases:
     commands:
       - echo Build started on 'date'
       - mvn build
-  test:
-    commands:
-      - echo Test Running at 'date'
       - mvn test
   post_build:
     commands:
       - echo Build completed on 'date'
-artifacts:
-  files:
-    - target/userms-1.0.jar
