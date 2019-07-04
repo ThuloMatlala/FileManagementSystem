@@ -1,5 +1,0 @@
-spring:
-  message: This is the test config bruh
-
-server:
-  port: 0420

@@ -1,0 +1,26 @@
+spring:
+  message: This is the test config bruh
+
+server:
+  port: 0420
+
+phases:
+  install:
+    - echo Nothing to do in the install phase...
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre-build phase...
+  build:
+    commands:
+      - echo Build started on 'date'
+      - mvn build
+  test:
+    commands:
+      - echo Test Running at 'date'
+      - mvn test
+  post_build:
+    commands:
+      - echo Build completed on 'date'
+artifacts:
+  files:
+    - target/userms-1.0.jar
