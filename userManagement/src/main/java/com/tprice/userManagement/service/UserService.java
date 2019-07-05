@@ -48,4 +48,8 @@ public class UserService {
     public void DeleteUserById(Long id) {
         userRepo.deleteById(id);
     }
+
+    public User FindUserByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
 }

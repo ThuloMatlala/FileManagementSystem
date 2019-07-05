@@ -40,6 +40,11 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/users/email", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity findbyEmail(@RequestParam(required = false) String email){
+        User user = userService.FindUserByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
     @GetMapping(value = "/users/lastName")
     public List<User> findByLastName(@RequestParam(required = false) String lastName){

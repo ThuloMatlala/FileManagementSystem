@@ -19,7 +19,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -124,6 +126,24 @@ public class UserControllerTest {
         verifyNoMoreInteractions(userService);
     }
 
+
+    @Test
+    public void findByEmailShouldReturnASingleUser() throws Exception{
+        List<User> userList = testHelper.CreateMultipleUsers();
+        String userEmail = "Test@email";
+        Stream<User> userStream = userList.stream().filter(user -> user.getEmail().equals(userEmail));
+        Optional<User> userOptional = userStream.findFirst();
+        User user = userOptional.orElse(new User());
+        when(userService.FindUserByEmail(userEmail)).thenReturn(user);
+
+        User expectedUser = userList.stream().filter(d -> d.getEmail().equals(userEmail)).findFirst().orElse(null);
+        mockMvc.perform(get("/api/users/email?email={email}", userEmail)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        verify(userService, times(1)).FindUserByEmail(userEmail);
+        verifyNoMoreInteractions(userService);
+    }
+
     @Test
     public void findByLastNameShouldReturnAListOfUsers() throws Exception {
         List<User> userList = testHelper.CreateMultipleUsers();
@@ -155,5 +175,6 @@ public class UserControllerTest {
         verify(userService, times(1)).DeleteUserById(userId);
         verifyNoMoreInteractions(userService);
     }
+
 }
 
