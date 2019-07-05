@@ -81,4 +81,12 @@ public class UserIntegrationTests {
                 .andExpect(status().isOk())
                 .andReturn();
     }
+
+    @Test
+    public void GetAllUsersByEmailShouldReturnASingleUser() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/users/{id}", "nonexistent@email.com")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isNotFound())
+                .andReturn();
+    }
 }
