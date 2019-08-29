@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -84,9 +85,12 @@ public class UserIntegrationTests {
 
     @Test
     public void GetAllUsersByEmailShouldReturnASingleUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/users/{id}", "nonexistent@email.com")
+        String userEmail = "nonexistent@email";
+
+        mockMvc.perform(get("/api/users/email?email={email}", userEmail)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isNotFound())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", Matchers.hasSize(0)))
                 .andReturn();
     }
 }
